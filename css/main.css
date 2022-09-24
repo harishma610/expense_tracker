@@ -4,45 +4,58 @@ body {
 
 .mainContainer {
   display: flex;
-  padding-top: 65px;
+  padding-top: 45px;
+  justify-content: space-evenly;
 }
 
-.imgContainer {
+.homeImgContainer {
   width: 65%;
   display: flex;
 }
 
-.imgContainer img {
+.homeImgContainer img {
   max-width: 91%;
   margin: auto;
 }
 
-.textContainer {
+.homeTextContainer {
   width: 35%;
 }
 
-.heading1 {
+.homeTextContainer p:nth-child(1) {
   font-size: 50px;
 }
 
-.heading2 {
+.homeTextContainer p:nth-child(2) {
   font-size: 36px;
 }
 
 .navBarContainer {
-  position: absolute;
-  right: 0em;
+  display: flex;
 }
 
 .nav {
   display: flex;
-  list-style-type: none;
+  padding: 5px;
+  flex: 1;
+  justify-content: end;
 }
 
-a, a:visited { color: #2c2c2cd7; }
-a:hover { color: #008C7F; }
+a,
+a:visited {
+  color: #2c2c2cd7;
+}
 
-.nav li a {
+a:hover {
+  color: #008C7F;
+}
+
+.button a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav div a {
   display: block;
   text-align: center;
   padding: 14px 16px;
@@ -50,7 +63,7 @@ a:hover { color: #008C7F; }
   font-weight: bold;
 }
 
-.nav li a:hover {
+.nav div a:hover {
   background-color: whitesmoke;
 }
 
@@ -63,13 +76,230 @@ a:hover { color: #008C7F; }
   background-color: #008C7F;
 }
 
+/* Calendar CSS*/
+ul {
+  list-style-type: none;
+}
+
+.calendarContainer,
+.expensesContainer {
+  margin: 35px;
+}
+
+.calendarMonth {
+  background: #008C7F;
+  text-align: center;
+  padding: 10px 25px;
+}
+
+.calendarMonth ul {
+  margin: 0;
+  padding: 0;
+}
+
+.calendarMonth ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.calendarMonth .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+.calendarMonth .next {
+  float: right;
+  padding-top: 10px;
+}
+
+.calendarTable,
+.expenseTable,
+.incomeTable {
+  border-collapse: collapse;
+  background: white;
+  color: black;
+}
+
+.expenseTableContainer {
+  margin-bottom: 35px;
+}
+
+.expenseTable,
+.incomeTable {
+  width: 30em;
+}
+
+.expenseBtn,
+.incomeBtn {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.expenseTable thead th,
+.incomeTable thead th {
+  background-color: #008C7F;
+  color: white;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: normal !important
+}
+
+thead tr {
+  background-color: #ddd;
+}
+
+tbody {
+  background-color: #eee;
+  text-align: center;
+}
+
+.calendarActive {
+  padding: 5px;
+  background: #008C7F;
+  color: white !important
+}
+
+/*  */
+
+.spendingContainer {
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+  padding-top: 45px;
+}
+
+.spendingCard {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+  transition: 0.3s;
+  min-width: 150px;
+  padding: 2px 16px;
+}
+
+.spendingCard:hover {
+  box-shadow: 0 8px 16px 0 #008C7F;
+}
+
+.spendingCard h4 {
+  border: 7px solid #008C7F;
+  border-radius: 20px;
+  background-color: #008C7F;
+  text-align: center;
+  color: white;
+}
+
+.spendingCard h2 {
+  text-align: center;
+}
+
+.categoryMainContainer {
+  margin: 30px 0;
+}
+
+.categoryText {
+  text-align: center;
+  padding: 30px 0;
+}
+
+.categoryContainer {
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+}
+
+.analysisContainer {
+  display: flex;
+  margin: 30px 0;
+  justify-content: space-evenly;
+}
+
+.categoryExpenseText {
+  padding: 30px 0;
+  text-align: center;
+}
+
+.chart {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+}
+
+.chart:hover {
+  box-shadow: 0 8px 16px 0 #008C7F;
+}
+
+.productListContainer {
+  display: flex;
+  margin: 40px 0;
+}
+
+.productImgContainer {
+  width: 40%;
+  display: flex;
+}
+
+.productImg {
+  margin: auto;
+  width: 300px;
+  height: 300px;
+  box-shadow: 0 4px 8px 0 #008C7F;
+}
+
+.productDetail {
+  width: 60%;
+  font-size: 20px;
+}
+
+.name-card {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.about-us-container {
+  padding-top: 45px;
+}
+
+.about-us-heading {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin: 25px 0;
+}
+
+.about-us-details {
+  display: flex;
+  justify-content: center;
+}
+
+.about-us-individual {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.individual-image {
+  margin: 10px;
+}
+
+.individual-image img {
+  height: 220px;
+  margin: auto;
+}
+
+.individual-text {
+  margin: 10px;
+  padding: 10px;
+  justify-content: center;
+  width: 65%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+}
+
+
+/* Media Query */
+
 @media only screen and (max-width: 768px) {
 
-  .navBarContainer {
-    position: relative;
-  }
-
-  .nav li a {
+  .nav div a {
     padding: 20px 6px;
     max-width: 6em;
   }
@@ -79,8 +309,87 @@ a:hover { color: #008C7F; }
     padding-top: 30px !important;
   }
 
-  .textContainer, .imgContainer{
+  .homeTextContainer,
+  .homeImgContainer {
     width: 100% !important;
     text-align: center;
   }
+
+  .calendarTable,
+  .expenseTable,
+  .incomeTable {
+    table-layout: fixed;
+    width: 100% !important;
+  }
+
+  .expenseTable thead th,
+  .incomeTable thead th {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .spendingContainer,
+  .categoryContainer {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
+  }
+
+  .spendingCard {
+    margin: 10px 0;
+    min-width: auto;
+  }
+
+  .analysisContainer {
+    display: block !important;
+  }
+
+  .categoryExpenseChart {
+    text-align: center;
+  }
+
+  .chart {
+    height: 200px;
+    width: 200px;
+  }
+
+  .productMainContainer {
+    padding-top: 30px;
+  }
+
+  .productListContainer {
+    display: block !important;
+    margin: 30px;
+  }
+
+  .productImgContainer {
+    width: 100% !important;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .productImg {
+    width: 200px;
+    height: 200px;
+  }
+
+  .productDetail {
+    width: 100% ! important;
+    text-align: center;
+  }
+
+  .about-us-container {
+    padding-top: 30px !important;
+  }
+
+  .about-us-details {
+    display: block !important;
+    margin: 10px 0 !important;
+  }
+
+  .about-us-individual {
+    width: 100% !important;
+    text-align: center;
+  }
+
 }

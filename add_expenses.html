@@ -9,14 +9,145 @@
 <body>
     <div class="navBarContainer">
         <div class="nav">
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./product.html">Product</a></li>
-            <li><a href="./add_expenses.html">Add Expenses</a></li>
-            <li><a href="./analysis.html">Expense Analysis</a></li>
-            <li><a href="./about.html">About</a></li>
+            <div><a href="./index.html">Home</a></div>
+            <div><a href="./product.html">Product</a></div>
+            <div><a href="./add_expenses.html">Add Expenses</a></div>
+            <div><a href="./analysis.html">Expense Analysis</a></div>
+            <div><a href="./about.html">About</a></div>
         </div>
     </div>
     <div class="mainContainer">
+        <div class="calendarContainer">
+            <div class="calendarMonth">
+                <ul>
+                    <li class="prev">&#10094;</li>
+                    <li class="next">&#10095;</li>
+                    <li>September<br><span style="font-size:18px">2022</span></li>
+                </ul>
+            </div>
+            <table class="calendarTable" cellspacing="18" cellpadding="18">
+                <thead>
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                    </tr>
+                    <tr>
+                        <td><span class="calendarActive">18</span></td>
+                        <td>19</td>
+                        <td>20</td>
+                        <td>21</td>
+                        <td>22</td>
+                        <td>23</td>
+                        <td>24</td>
+                    </tr>
+                    <tr>
+                        <td>25</td>
+                        <td>26</td>
+                        <td>27</td>
+                        <td>28</td>
+                        <td>29</td>
+                        <td>30</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="expensesContainer">
+            <div class="expenseTableContainer">
+                <table class="expenseTable" cellspacing="18" cellpadding="18">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>09/18/2022</td>
+                            <td>Shopping</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>09/18/2022</td>
+                            <td>Food</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>09/18/2022</td>
+                            <td>Household</td>
+                            <td>15</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="expenseBtn">
+                    <button class="button">Add Expense</button>
+                </div>
+
+            </div>
+            <div class="incomeTableContainer">
+                <table class="incomeTable" cellspacing="18" cellpadding="18">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Source</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>09/18/2022</td>
+                            <td>Salary</td>
+                            <td>1800</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="incomeBtn">
+                    <button class="button">Add Income</button>
+                </div>
+
+            </div>
+        </div>
     </div>
 </body>
+
 </html>
