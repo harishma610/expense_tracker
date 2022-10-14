@@ -1,3 +1,5 @@
+@import url("https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/blitzer/jquery-ui.min.css");
+
 body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -392,4 +394,129 @@ tbody {
     text-align: center;
   }
 
+
+  .ui-datepicker-calendar td a.expenseValue {
+    padding: 2px !important;
+  }
+
+  .ui-datepicker-calendar td a.noExpenseValue {
+    padding: 8px !important;
+  }
+
+  /* Popup Media Query - start */
+  
+  .addExpenseForm {
+    max-width: 250px !important;
+    min-width: 275px !important;
+  }
+
+  /* Popup Media Query - end */
+
 }
+
+
+/* new_cal_css */
+.ui-datepicker {
+  width: 100% !important;
+}
+
+.ui-widget-header {
+  background: #008C7F !important;
+}
+
+.ui-datepicker .weekend .ui-state-default {
+  background: #b7dad7;
+}
+
+.ui-datepicker-calendar td a {
+  /* position: relative; */
+  /* padding-bottom: 10px; */
+}
+
+.expenseValue {
+  padding: 13px !important;
+}
+
+.noExpenseValue {
+  padding: 22px !important;
+}
+
+.ui-datepicker-calendar td a[data-custom]::after {
+  content: '$' attr(data-custom);
+  display: block;
+  font-size: small;
+  padding-top: 5px;
+}
+
+/* Popup CSS - start */
+
+#popupContainer {
+  width: 100%;
+  height: 100%;
+  opacity: .95;
+  top: 0;
+  left: 0;
+  display: none;
+  position: fixed;
+  background-color: #313131;
+  overflow: auto
+}
+
+#popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.addExpenseForm {
+  max-width: 400px;
+  min-width: 350px;
+  padding: 10px 50px;
+  border: 2px solid gray;
+  border-radius: 10px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: #fff
+}
+
+.popupTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popupTitleContainer i {
+  cursor: pointer;
+}
+
+.addExpenseFields {
+  padding: 10px 0;
+}
+
+.addExpenseFields span:nth-child(1) {
+  display: inline-flex;
+  min-width: 100px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.addExpenseFields span:nth-child(2) {
+  font-size: 18px;
+}
+
+.expenseSubmitContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.expenseSubmit {
+  border: none;
+  border-radius: 10px;
+  color: white;
+  margin: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #008C7F;
+}
+
+/* Popup CSS - end */
