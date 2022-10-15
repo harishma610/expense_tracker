@@ -5,18 +5,18 @@
     <title>Expense Tracker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
 </head>
 
 <body>
-    <div class="navBarContainer">
-        <div class="nav">
-            <div><a href="./index.html">Home</a></div>
-            <div><a href="./product.html">Product</a></div>
-            <div><a href="./add_expenses.html">Add Expenses</a></div>
-            <div><a href="./analysis.html">Expense Analysis</a></div>
-            <div><a href="./about.html">About</a></div>
-        </div>
+    <div id="nav-placeholder">
     </div>
+    <script>
+        $.get("navigation.html", function (data) {
+            $("#nav-placeholder").replaceWith(data);
+        });
+    </script>
     <div class="spendingContainer">
         <div class="spendingCard">
             <h4>Today</h4>
@@ -37,7 +37,34 @@
                 <h3>September Expense Chart</h3>
             </div>
             <div class="categoryExpenseChart">
-                <img class="chart" src="./img/SampleExpenseChart.png">
+                <!-- <div style = "width:200px;height:200px"> -->
+                <canvas id="barchartexample" width="600" height="400"></canvas>
+                <script>
+                    new Chart(document.getElementById("barchartexample"), {
+                        type: 'bar',
+                        data: {
+                            labels: ["Household", "Food", "Shopping", "Transportation"],
+                            datasets: [
+                                {
+                                    label: "Amount ($)",
+                                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9"],
+                                    data: [120, 50, 200, 30]
+                                }
+                            ]
+                        },
+                        options: {
+                            legend: { display: false },
+                            title: {
+                                display: true,
+                                // text: 'Predicted world population (millions) in 2050'
+
+                            },
+
+                        }
+
+                    });
+
+                </script>
             </div>
         </div>
         <div class="categoryExpenseContainer">
@@ -45,7 +72,38 @@
                 <h3>Future Expense Forecast</h3>
             </div>
             <div class="categoryExpenseChart">
-                <img class="chart" src="./img/ForecastChart.png">
+                <canvas id="mixed-chart" width="600" height="400"></canvas>
+                <script>
+                    new Chart(document.getElementById("mixed-chart"), {
+                        type: 'line',
+                        data: {
+                            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                            datasets: [{
+                                label: "Actual",
+                                type: "line",
+                                borderColor: "#8e5ea2",
+                                data: [400, 550, 600, 400, 500, 800, 1000, 300, 900, 700, 875, 900],
+                                fill: false,
+                                tension: 0.1
+                            }, {
+                                label: "Forecast",
+                                type: "line",
+                                borderColor: "#3e95cd",
+                                data: [490, 570, 550, 300, 400, 600, 900, 600, 550],
+                                fill: false,
+                                tension: 0.1
+                            },
+                            ]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: 'Actual versus Forecast'
+                            },
+                            legend: { display: false }
+                        }
+                    });
+                </script>
             </div>
         </div>
     </div>

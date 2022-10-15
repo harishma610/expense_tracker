@@ -1,0 +1,26 @@
+<div id="navbar" class="navBarContainer">
+    <div class="nav">
+        <div><a href="./index.html">Home</a></div>
+        <div><a href="./product.html">Product</a></div>
+        <div><a href="./add_expenses.html">Add Expenses</a></div>
+        <div><a href="./analysis.html">Expense Analysis</a></div>
+        <div><a href="./about.html">About</a></div>
+    </div>
+</div>
+
+<script>
+
+    var navbar = document.getElementById("navbar");
+    var sticky = navbar.offsetTop;
+
+    window.onscroll = function () { myFunction() };
+    function myFunction() {
+        if (window.pageYOffset >= navbar.offsetTop) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+
+
+</script>

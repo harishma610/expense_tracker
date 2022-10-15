@@ -34,6 +34,9 @@ body {
 
 .navBarContainer {
   display: flex;
+  background-color: white;
+  
+  /* position: fixed; */
 }
 
 .nav {
@@ -78,6 +81,16 @@ a:hover {
   background-color: #008C7F;
 }
 
+.sticky {
+  position:fixed;
+  top: 0;
+  width: 100%; 
+
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
 /* Calendar CSS*/
 ul {
   list-style-type: none;
@@ -232,6 +245,7 @@ tbody {
 
 .productListContainer {
   display: flex;
+  padding: 30px;
   margin: 40px 0;
 }
 

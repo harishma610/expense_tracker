@@ -5,18 +5,17 @@
     <title>Expense Tracker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 
 <body>
-    <div class="navBarContainer">
-        <div class="nav">
-            <div><a href="./index.html">Home</a></div>
-            <div><a href="./product.html">Product</a></div>
-            <div><a href="./add_expenses.html">Add Expenses</a></div>
-            <div><a href="./analysis.html">Expense Analysis</a></div>
-            <div><a href="./about.html">About</a></div>
-        </div>
+    <div id="nav-placeholder">
     </div>
+    <script>
+        $.get("navigation.html", function (data) {
+            $("#nav-placeholder").replaceWith(data);
+        });
+    </script>
     <div class="productMainContainer">
         <div class="productListContainer">
             <div class="productImgContainer">
@@ -27,9 +26,9 @@
                     <b>Manage Income & Expenses</b>
                 </div>
                 <div>
-                    <p>Stop utilizing excel spreadsheets and paper to keep track of your costs. 
-                        The Expense Tracker provides a digital solution to this problem. 
-                        It allows you to add and manage all your expenses and income in a 
+                    <p>Stop utilizing excel spreadsheets and paper to keep track of your costs.
+                        The Expense Tracker provides a digital solution to this problem.
+                        It allows you to add and manage all your expenses and income in a
                         single dashboard.
                     </p>
                 </div>
@@ -47,8 +46,8 @@
                     <b>Expense Forecasts</b>
                 </div>
                 <div>
-                    <p>Gain an insight into how your expenses would be for the future months, 
-                        so you can predict your expenses and manage your cash flow with ease 
+                    <p>Gain an insight into how your expenses would be for the future months,
+                        so you can predict your expenses and manage your cash flow with ease
                         and plan your finances ahead.
                     </p>
                 </div>
@@ -66,8 +65,8 @@
                     <b>Expense Analysis</b>
                 </div>
                 <div>
-                    <p>Obtain Real-time visibility to your expenses using the Expense Analysis 
-                        Feature. Gain useful insights and get a better understanding of where 
+                    <p>Obtain Real-time visibility to your expenses using the Expense Analysis
+                        Feature. Gain useful insights and get a better understanding of where
                         and how you spend your money from the charts that are generated.
                     </p>
                 </div>
