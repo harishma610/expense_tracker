@@ -2,6 +2,7 @@
 
 body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 0px;
 }
 
 .mainContainer {
@@ -85,7 +86,7 @@ a:hover {
   position:fixed;
   top: 0;
   width: 100%; 
-
+  z-index: 10;
 }
 
 .sticky + .content {
@@ -245,7 +246,6 @@ tbody {
 
 .productListContainer {
   display: flex;
-  padding: 30px;
   margin: 40px 0;
 }
 
@@ -436,6 +436,7 @@ tbody {
 
 .ui-widget-header {
   background: #008C7F !important;
+  z-index: 5;
 }
 
 .ui-datepicker .weekend .ui-state-default {
