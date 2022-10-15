@@ -22,7 +22,7 @@ $(document).ready(function () {
     function summaryInfo() {
         console.log('addCustomInformation called')
         setTimeout(function () {
-            self.dayrates = { 1: '690', 15: '10', 22: '30' };
+            self.dayrates = { 1: '590', 15: '10', 22: '30' };
             const d = new Date();
 
             $('.ui-datepicker-calendar td > ').each(function (idx) {
@@ -120,7 +120,7 @@ $(document).ready(function () {
                 var cell1 = row2.insertCell()
                 cell1.innerHTML = "Rent"
                 var cell2 = row2.insertCell()
-                cell2.innerHTML = "600"
+                cell2.innerHTML = "500"
             }
 
             else if (selectedDay == 15) {
