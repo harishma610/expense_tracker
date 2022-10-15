@@ -22,7 +22,7 @@ $(document).ready(function () {
     function summaryInfo() {
         console.log('addCustomInformation called')
         setTimeout(function () {
-            self.dayrates = { 1: '90', 15: '10', 28: '30' };
+            self.dayrates = { 1: '690', 15: '10', 22: '30' };
             const d = new Date();
 
             $('.ui-datepicker-calendar td > ').each(function (idx) {
@@ -102,7 +102,7 @@ $(document).ready(function () {
                 var cell = row.insertCell()
                 cell.innerHTML = selectedDate
                 var cell1 = row.insertCell()
-                cell1.innerHTML = "FOOD"
+                cell1.innerHTML = "Food"
                 var cell2 = row.insertCell()
                 cell2.innerHTML = "20"
 
@@ -110,10 +110,17 @@ $(document).ready(function () {
                 var cell = row1.insertCell()
                 cell.innerHTML = selectedDate
                 var cell1 = row1.insertCell()
-                cell1.innerHTML = "GROCERIES"
+                cell1.innerHTML = "Groceries"
                 var cell2 = row1.insertCell()
                 cell2.innerHTML = "70"
 
+                var row2 = expenseTableBody.insertRow()
+                var cell = row2.insertCell()
+                cell.innerHTML = selectedDate
+                var cell1 = row2.insertCell()
+                cell1.innerHTML = "Rent"
+                var cell2 = row2.insertCell()
+                cell2.innerHTML = "600"
             }
 
             else if (selectedDay == 15) {
@@ -121,7 +128,7 @@ $(document).ready(function () {
                 var cell = row.insertCell()
                 cell.innerHTML = selectedDate
                 var cell1 = row.insertCell()
-                cell1.innerHTML = "FOOD"
+                cell1.innerHTML = "Transportation"
                 var cell2 = row.insertCell()
                 cell2.innerHTML = "10"
             }
@@ -131,7 +138,7 @@ $(document).ready(function () {
                 var cell = row.insertCell()
                 cell.innerHTML = selectedDate
                 var cell1 = row.insertCell()
-                cell1.innerHTML = "SHOPPING"
+                cell1.innerHTML = "Shopping"
                 var cell2 = row.insertCell()
                 cell2.innerHTML = "30"
             }
