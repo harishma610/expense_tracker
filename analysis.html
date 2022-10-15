@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+    <script src="./js/analysis.js"></script>
 </head>
 
 <body>
@@ -20,15 +21,15 @@
     <div class="spendingContainer">
         <div class="spendingCard">
             <h4>Today</h4>
-            <h2>$ 25</h2>
+            <h2 id="daily"></h2>
         </div>
         <div class="spendingCard">
             <h4>This Week</h4>
-            <h2>$ 110</h2>
+            <h2 id="weekly"></h2>
         </div>
         <div class="spendingCard">
             <h4>September</h4>
-            <h2>$ 800</h2>
+            <h2 id="monthly"></h2>
         </div>
     </div>
     <div class="analysisContainer">
@@ -39,32 +40,6 @@
             <div class="categoryExpenseChart">
                 <!-- <div style = "width:200px;height:200px"> -->
                 <canvas id="barchartexample" width="600" height="400"></canvas>
-                <script>
-                    new Chart(document.getElementById("barchartexample"), {
-                        type: 'bar',
-                        data: {
-                            labels: ["Household", "Food", "Shopping", "Transportation"],
-                            datasets: [
-                                {
-                                    label: "Amount ($)",
-                                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9"],
-                                    data: [120, 50, 200, 30]
-                                }
-                            ]
-                        },
-                        options: {
-                            legend: { display: false },
-                            title: {
-                                display: true,
-                                // text: 'Predicted world population (millions) in 2050'
-
-                            },
-
-                        }
-
-                    });
-
-                </script>
             </div>
         </div>
         <div class="categoryExpenseContainer">
@@ -73,37 +48,6 @@
             </div>
             <div class="categoryExpenseChart">
                 <canvas id="mixed-chart" width="600" height="400"></canvas>
-                <script>
-                    new Chart(document.getElementById("mixed-chart"), {
-                        type: 'line',
-                        data: {
-                            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                            datasets: [{
-                                label: "Actual",
-                                type: "line",
-                                borderColor: "#8e5ea2",
-                                data: [400, 550, 600, 400, 500, 800, 1000, 300, 900, 700, 875, 900],
-                                fill: false,
-                                tension: 0.1
-                            }, {
-                                label: "Forecast",
-                                type: "line",
-                                borderColor: "#3e95cd",
-                                data: [490, 570, 550, 300, 400, 600, 900, 600, 550],
-                                fill: false,
-                                tension: 0.1
-                            },
-                            ]
-                        },
-                        options: {
-                            title: {
-                                display: true,
-                                text: 'Actual versus Forecast'
-                            },
-                            legend: { display: false }
-                        }
-                    });
-                </script>
             </div>
         </div>
     </div>
@@ -114,19 +58,19 @@
         <div class="categoryContainer">
             <div class="spendingCard">
                 <h4>Shopping</h4>
-                <h2>$ 200</h2>
+                <h2 id="firstcategory"></h2>
             </div>
             <div class="spendingCard">
                 <h4>Household</h4>
-                <h2>$ 120</h2>
+                <h2 id="secondcategory"></h2>
             </div>
             <div class="spendingCard">
                 <h4>Food</h4>
-                <h2>$ 50</h2>
+                <h2 id="thirdcategory"></h2>
             </div>
             <div class="spendingCard">
                 <h4>Transportation</h4>
-                <h2>$ 20</h2>
+                <h2 id="fourthcategory"></h2>
             </div>
         </div>
     </div>
