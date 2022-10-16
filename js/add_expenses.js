@@ -7,23 +7,44 @@ $(document).ready(function () {
                 return [true, date.getDay() === 0 || date.getDay() === 6 ? "weekend" : "weekday"];
             },
             onChangeMonthYear: function (year, month) {
-                summaryInfo()
-                refreshExpenseTable()
-                var currMonth = month
-                incomeExpense(currMonth)
+                self.selectedDate = '';
+                disableExpenseButton();
+                summaryInfo(year, month);
+                refreshExpenseTable();
+                var currMonth = month;
+                incomeExpense(currMonth);
             },
             onSelect: onDateSelect
         });
+        self.selectedDate = '';
+        disableExpenseButton();
         summaryInfo();
         incomeExpense();
         refreshExpenseTable();
     });
 
-    function summaryInfo() {
+    function disableExpenseButton() {
+        $('.expenseBtn button').prop('disabled', true);
+        $('.expenseBtn button').addClass('disabledBtn');
+    }
+
+    function enableExpenseButton() {
+        $('.expenseBtn button').prop('disabled', false);
+        $('.expenseBtn button').removeClass('disabledBtn');
+    }
+
+    function summaryInfo(year, month) {
         console.log('addCustomInformation called')
         setTimeout(function () {
-            self.dayrates = { 1: '590', 15: '10', 22: '30' };
+            self.dayrates = {};
             const d = new Date();
+            currMonth = d.getMonth();
+            currYear = d.getFullYear();
+
+            console.log(year, currYear, month - 1, currMonth);
+            if (isNaN(month) || month - 1 <= currMonth && year <= currYear) {
+                self.dayrates = { 1: '590', 15: '10', 22: '30' };
+            }
 
             $('.ui-datepicker-calendar td > ').each(function (idx) {
                 var value = self.dayrates[idx + 1] || 0;
@@ -35,7 +56,7 @@ $(document).ready(function () {
                     $(this).addClass('noExpenseValue')
                 }
             });
-        }, 50)
+        }, 5)
 
     }
 
@@ -46,7 +67,7 @@ $(document).ready(function () {
         var row = expenseTableBody.insertRow()
         var cell = row.insertCell()
         $(cell).attr("colspan", 3);
-        cell.innerHTML = "Select a date to view expenses"
+        cell.innerHTML = "Select a date to add/view expenses"
     }
 
     function incomeExpense(currMonth) {
@@ -85,9 +106,12 @@ $(document).ready(function () {
     }
 
     function onDateSelect() {
-        var selectedDate = $(this).val();
+        self.selectedDate = $(this).val();
+        enableExpenseButton();
         var selectedDay = $(this).datepicker('getDate').getDate();
-        summaryInfo(null)
+        var selectedMonth = $(this).datepicker('getDate').getMonth();
+        var selectedYear = $(this).datepicker('getDate').getFullYear();
+        summaryInfo(selectedYear, selectedMonth + 1)
 
         var exists = selectedDay in self.dayrates
 
@@ -100,7 +124,7 @@ $(document).ready(function () {
             if (selectedDay == 1) {
                 var row = expenseTableBody.insertRow()
                 var cell = row.insertCell()
-                cell.innerHTML = selectedDate
+                cell.innerHTML = self.selectedDate
                 var cell1 = row.insertCell()
                 cell1.innerHTML = "Food"
                 var cell2 = row.insertCell()
@@ -108,7 +132,7 @@ $(document).ready(function () {
 
                 var row1 = expenseTableBody.insertRow()
                 var cell = row1.insertCell()
-                cell.innerHTML = selectedDate
+                cell.innerHTML = self.selectedDate
                 var cell1 = row1.insertCell()
                 cell1.innerHTML = "Groceries"
                 var cell2 = row1.insertCell()
@@ -116,7 +140,7 @@ $(document).ready(function () {
 
                 var row2 = expenseTableBody.insertRow()
                 var cell = row2.insertCell()
-                cell.innerHTML = selectedDate
+                cell.innerHTML = self.selectedDate
                 var cell1 = row2.insertCell()
                 cell1.innerHTML = "Rent"
                 var cell2 = row2.insertCell()
@@ -126,7 +150,7 @@ $(document).ready(function () {
             else if (selectedDay == 15) {
                 var row = expenseTableBody.insertRow()
                 var cell = row.insertCell()
-                cell.innerHTML = selectedDate
+                cell.innerHTML = self.selectedDate
                 var cell1 = row.insertCell()
                 cell1.innerHTML = "Transportation"
                 var cell2 = row.insertCell()
@@ -136,7 +160,7 @@ $(document).ready(function () {
             else {
                 var row = expenseTableBody.insertRow()
                 var cell = row.insertCell()
-                cell.innerHTML = selectedDate
+                cell.innerHTML = self.selectedDate
                 var cell1 = row.insertCell()
                 cell1.innerHTML = "Shopping"
                 var cell2 = row.insertCell()
@@ -156,6 +180,7 @@ $(document).ready(function () {
 
 function addExpenseShow() {
     $('#popupContainer').css("display", "block");
+    $('#expensePopupDate').html(self.selectedDate);
     $('.fieldsContainer div:lt(2)').css("display", "block");
     $('.fieldsContainer div:eq(2)').css("display", "none");
     $("#popupTitle").html("Add Expense");
