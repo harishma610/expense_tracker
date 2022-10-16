@@ -66,7 +66,7 @@
 
     <div id="popupContainer">
         <div id="popup">
-            <form action="#" class="addExpenseForm" method="post" name="form">
+            <div class="addExpenseForm">
                 <div class="popupTitleContainer">
                     <h2 id="popupTitle"></h2>
                     <i class="fa fa-window-close" aria-hidden="true" onclick="popupClose()"></i>
@@ -99,10 +99,10 @@
                         <input type="number" id="expenseAmount" name="expenseAmount" min="1">
                     </div>
                     <div class="expenseSubmitContainer">
-                        <button class="expenseSubmit">Add</button>
+                        <button class="expenseSubmit" onclick="addExpense()">Add</button>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 

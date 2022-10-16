@@ -121,50 +121,16 @@ $(document).ready(function () {
 
 
         if (exists) {
-            if (selectedDay == 1) {
+            var expense_array = { 1: { "Food": 20, "Groceries": 70, "Rent": 500 }, 15: { "Transportation": 10 }, 22: { "Shopping": 30 } };
+
+            for (var i = 0; i < Object.keys(expense_array[selectedDay]).length; i++) {
                 var row = expenseTableBody.insertRow()
                 var cell = row.insertCell()
                 cell.innerHTML = self.selectedDate
                 var cell1 = row.insertCell()
-                cell1.innerHTML = "Food"
+                cell1.innerHTML = Object.keys(expense_array[selectedDay])[i]
                 var cell2 = row.insertCell()
-                cell2.innerHTML = "20"
-
-                var row1 = expenseTableBody.insertRow()
-                var cell = row1.insertCell()
-                cell.innerHTML = self.selectedDate
-                var cell1 = row1.insertCell()
-                cell1.innerHTML = "Groceries"
-                var cell2 = row1.insertCell()
-                cell2.innerHTML = "70"
-
-                var row2 = expenseTableBody.insertRow()
-                var cell = row2.insertCell()
-                cell.innerHTML = self.selectedDate
-                var cell1 = row2.insertCell()
-                cell1.innerHTML = "Rent"
-                var cell2 = row2.insertCell()
-                cell2.innerHTML = "500"
-            }
-
-            else if (selectedDay == 15) {
-                var row = expenseTableBody.insertRow()
-                var cell = row.insertCell()
-                cell.innerHTML = self.selectedDate
-                var cell1 = row.insertCell()
-                cell1.innerHTML = "Transportation"
-                var cell2 = row.insertCell()
-                cell2.innerHTML = "10"
-            }
-
-            else {
-                var row = expenseTableBody.insertRow()
-                var cell = row.insertCell()
-                cell.innerHTML = self.selectedDate
-                var cell1 = row.insertCell()
-                cell1.innerHTML = "Shopping"
-                var cell2 = row.insertCell()
-                cell2.innerHTML = "30"
+                cell2.innerHTML = Object.values(expense_array[selectedDay])[i]
             }
         }
         else {
@@ -192,6 +158,11 @@ function addIncomeShow() {
     $('.fieldsContainer div:lt(2)').css("display", "none");
     $("#popupTitle").html("Add Income");
     $("#incomeMonthLabel").html(self.selectedMonth);
+}
+
+function addExpense() {
+    // AddExpenseService integration in future
+    $('#popupContainer').css("display", "none");
 }
 
 function popupClose() {
