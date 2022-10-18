@@ -410,8 +410,13 @@ tbody {
   }
 
   .about-us-individual {
+    display: block !important;
     width: 100% !important;
     text-align: center;
+  }
+
+  .individual-text {
+    width: 100% !important;
   }
 
 
