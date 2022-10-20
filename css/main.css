@@ -379,6 +379,7 @@ tbody {
 
   .product {
     display: block !important;
+    padding-top: 30px !important;
   }
 
   .card {
@@ -569,6 +570,7 @@ select {
 .product {
   width: 100vw;
   height: 100%;
+  padding-top: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
