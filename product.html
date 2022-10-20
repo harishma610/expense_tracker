@@ -17,56 +17,48 @@
             $("#nav-placeholder").replaceWith(data);
         });
     </script>
-    <div class="productMainContainer">
-        <div class="productListContainer">
-            <div class="productImgContainer">
-                <img class="productImg" src="./img/ManageIncome.png">
-            </div>
-            <div class="productDetail">
-                <div>
-                    <b id="feature1Heading"></b>
-                </div>
-                <div>
-                    <p id="feature1Desc"></p>
-                </div>
-                <div>
-                    <button class="button" onclick="viewManageExpense()">View</button>
-                </div>
-            </div>
+    <div class="product">
+        <div class="card">
+          <div class="card-image"></div>
+          <div class="card-text">
+            <h3>Manage Income and Expenses</h3>
+            <p>Stop utilizing excel spreadsheets and paper to keep track of your costs. The Expense Tracker provides a digital solution to this problem. It allows you to add and manage all your expenses and income in a single dashboard.</p>
+          </div>
+          <div class="card-stats">
+              <div class="value">
+              <button class ="button" onclick="viewManageExpense()">View</button>
+              </div>
+          </div>
         </div>
-        <div class="productListContainer">
-            <div class="productImgContainer">
-                <img class="productImg" src="./img/Forecast.png">
-            </div>
-            <div class="productDetail">
-                <div>
-                    <b id="feature2Heading">Expense Forecasts</b>
-                </div>
-                <div>
-                    <p id="feature2Desc"></p>
-                </div>
-                <div>
-                    <button class="button" onclick="viewManageExpense()">View</button>
-                </div>
-            </div>
+        <div class="card">
+          <div class="card-image card2"></div>
+          <div class="card-text">
+            <h3>Expense Forecasts</h3>
+            <p>Gain an insight into how your expenses would be for the future months, so you can predict your expenses and manage your cash flow with ease and plan your finances ahead.
+    
+            </p>
+          </div>
+          <div class="card-stats">
+              <div class="value">
+                <button class ="button" onclick="viewAnalysis()">View</button>
+              </div>
+          </div>
         </div>
-        <div class="productListContainer">
-            <div class="productImgContainer">
-                <img class="productImg" src="./img/ExpenseReports.webp">
+        <div class="card">
+            <div class="card-image card3"></div>
+            <div class="card-text">
+              <h3>Expense Analysis</h3>
+              <p>Obtain Real-time visibility to your expenses using the Expense Analysis Feature. Gain useful insights and get a better understanding of where and how you spend your money from the charts that are generated.
+    
+              </p>
             </div>
-            <div class="productDetail">
-                <div>
-                    <b id="feature3Heading">Expense Analysis</b>
-                </div>
-                <div>
-                    <p id="feature3Desc"></p>
-                </div>
-                <div>
-                    <button class="button" onclick="viewAnalysis()">View</button>
-                </div>
+            <div class="card-stats">
+                <div class="value">
+                  <button class ="button" onclick="viewAnalysis()">View</button>
+                </div>         
             </div>
-        </div>
+          </div>
     </div>
 </body>
-
 </html>
+    
