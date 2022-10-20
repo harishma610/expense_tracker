@@ -379,7 +379,6 @@ tbody {
 
   .product {
     display: block !important;
-    height: 100% !important;
   }
 
   .card {
@@ -569,11 +568,11 @@ select {
 
 .product {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .card {
   display: grid;
