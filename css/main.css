@@ -382,6 +382,9 @@ tbody {
     height: 100% !important;
   }
 
+  .card {
+    grid-template-columns: 100% !important;
+  }
   /* .productMainContainer {
     padding-top: 30px;
   } */
@@ -423,7 +426,8 @@ tbody {
   }
 
   .individual-text {
-    width: 90% !important;
+    /* width: 90% !important; */
+    margin: auto;
   }
 
 
