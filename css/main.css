@@ -11,6 +11,12 @@ body {
   justify-content: space-evenly;
 }
 
+.addExpensesMainContainer {
+  display: flex;
+  padding-top: 45px;
+  justify-content: space-evenly;
+}
+
 .homeImgContainer {
   width: 65%;
   display: flex;
@@ -333,6 +339,11 @@ tbody {
     padding-top: 30px !important;
   }
 
+  .addExpensesMainContainer {
+    display: block !important;
+    padding-top: 30px !important;
+  }
+
   .homeTextContainer,
   .homeImgContainer {
     width: 100% !important;
@@ -647,3 +658,58 @@ select {
   background: url("../img/ExpenseReports.jpg");
   background-size:cover; 
 }
+
+
+/* Animation CSS - Start */
+
+.mainContainer > div:nth-child(-n + 2), .mainContainer > div:nth-child(2) > p, button,
+.product > .card, .addExpensesMainContainer, .spendingContainer, .analysisContainer,
+.categoryMainContainer {
+  -webkit-animation:fadeIn 0.6s linear;
+  animation:fadeIn 0.6s linear;
+  -webkit-animation-fill-mode:both;
+  animation-fill-mode:both;
+}
+
+.mainContainer > div:nth-child(1), .product > div:nth-child(1), 
+.spendingContainer {
+  -webkit-animation-delay:0.5s;
+  animation-delay:0.5s;
+}
+
+.mainContainer > div:nth-child(2), .product > div:nth-child(2), 
+.analysisContainer {
+  -webkit-animation-delay:1s;
+  animation-delay:1s;
+}
+
+.mainContainer > div:nth-child(2) > p:nth-child(1), .product > div:nth-child(3), 
+.categoryMainContainer {
+  -webkit-animation-delay:1.5s;
+  animation-delay:1.5s;
+}
+.mainContainer > div:nth-child(2) > p:nth-child(2) {
+  -webkit-animation-delay:2s;
+  animation-delay:2s;
+}
+.mainContainer > div:nth-child(2) > button {
+  -webkit-animation-delay:2.5s;
+  animation-delay:2.5s;
+}
+
+@-webkit-keyframes fadeIn  {
+  0% {
+     opacity:0;
+  }
+  
+  75% {
+     opacity:0.6;
+  }
+  
+  100% {
+     opacity:2;
+  }
+
+}
+
+/* Animation CSS - End */
