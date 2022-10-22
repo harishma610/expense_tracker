@@ -17,6 +17,13 @@ body {
   justify-content: space-evenly;
 }
 
+.addExpensesTitle {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .homeImgContainer {
   width: 65%;
   display: flex;
