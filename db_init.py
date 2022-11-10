@@ -20,7 +20,7 @@ db_obj.execute_statement('''CREATE TABLE IF NOT EXISTS income (
 
 # Load data into the expenses and income tables
 db_obj.cur.copy_expert("COPY expenses FROM STDIN DELIMITER ',' CSV HEADER", open('data/expenses.csv', 'r'))
-db_obj.cur.copy_expert("COPY expenses FROM STDIN DELIMITER ',' CSV HEADER", open('data/income.csv', 'r'))
+db_obj.cur.copy_expert("COPY income FROM STDIN DELIMITER ',' CSV HEADER", open('data/income.csv', 'r'))
 
 # Close connections
 db_obj.close_connections()
