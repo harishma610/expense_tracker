@@ -23,4 +23,5 @@ db_obj.cur.copy_expert("COPY expenses FROM STDIN DELIMITER ',' CSV HEADER", open
 db_obj.cur.copy_expert("COPY income FROM STDIN DELIMITER ',' CSV HEADER", open('data/income.csv', 'r'))
 
 # Close connections
+db_obj.conn.commit()
 db_obj.close_connections()
