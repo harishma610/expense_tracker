@@ -14,12 +14,13 @@ class DBConnection:
         )
         self.cur = self.conn.cursor()
 
-    def execute_statement(self, statement, **kwargs: None):
+    def execute_statement(self, statement, linear: bool = False, **kwargs: None):
 
         if not kwargs:
             self.cur.execute(statement)
-        data = self.cur.fetchall()
-        return data
+        if not linear:
+            data = self.cur.fetchall()
+            return data
 
     def close_connections(self):
         self.cur.close()
