@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Expense Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors"></script>
+</head>
+
+<body>
+    <div id="nav-placeholder">
+    </div>
+    <script>
+        $.get("navigation.html", function (data) {
+            $("#nav-placeholder").replaceWith(data);
+        });
+        const labels = {{ labels|safe }};
+        const autoColors =  [];
+        for (i = 0; i < labels.length; i++) {
+            const r = Math.floor(Math.random() * 255);
+            const g = Math.floor(Math.random() * 255);
+            const b = Math.floor(Math.random() * 255);
+            autoColors.push('rgba('+r+', '+g+', '+b+', 1)');
+        }
+        window.onload = function () {
+
+            new Chart(document.getElementById("barchartexample"), {
+                type: 'bar',
+                data: {
+                    labels: {{ labels|safe }},
+                    datasets: [
+                        {
+                            label: "Amount ($)",
+                            backgroundColor: autoColors,
+                            data: {{ values|safe }}
+                        }
+                    ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+
+                    },
+                    scales: {
+                        xAxes: [{
+                          ticks: {
+                            callback: function(label, index, labels) {
+                              if (/\s/.test(label)) {
+                                return label.split(" ");
+                              }else{
+                                return label;
+                              }
+                            }
+                          }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                            }
+                        }]
+                    }
+                }
+            });
+
+            new Chart(document.getElementById("mixed-chart"), {
+                type: 'line',
+                data: {
+                    labels: ["Jan-22", "Feb-22", "Mar-22", "Apr-22", "May-22", "Jun-22", "Jul-22", "Aug-22", "Sep-22", "Oct-22", "Nov-22", "Dec-22", "Jan-23", "Feb-23", "Mar-23"],
+                    datasets: [{
+                        label: "Actual",
+                        type: "line",
+                        borderColor: "#8e5ea2",
+                        data: [800, 700, 900, 600, 1200, 1500, 650, 500, 650, 630],
+                        fill: false,
+                        tension: 0.1
+                    }, {
+                        label: "Forecast",
+                        type: "line",
+                        borderColor: "#3e95cd",
+                        data: [500, 600, 1100, 700, 800, 1400, 850, 400, 560, 530, 700, 730, 800, 650, 500],
+                        fill: false,
+                        tension: 0.1
+                    },
+                    ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Actual versus Forecast'
+                    },
+                    legend: { display: true },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                            }
+                        }]
+                    }
+                }
+            });
+        };
+    </script>
+    <div class="spendingContainer">
+        <div class="spendingCard">
+            <h4>Today</h4>
+            <h2 id="daily">$ {{ data['today'] }}</h2>
+        </div>
+        <div class="spendingCard">
+            <h4>This Week</h4>
+            <h2 id="weekly">$ {{ data['weekly'] }}</h2>
+        </div>
+        <div class="spendingCard">
+            <h4>October</h4>
+            <h2 id="monthly">$ {{ data['monthly'] }}</h2>
+        </div>
+    </div>
+    <div class="analysisContainer">
+        <div class="categoryExpenseContainer">
+            <div class="categoryExpenseText">
+                <h3>October Expense Chart</h3>
+            </div>
+            <div class="categoryExpenseChart">
+                <!-- <div style = "width:200px;height:200px"> -->
+                <canvas id="barchartexample" width="600" height="400"></canvas>
+            </div>
+        </div>
+        <div class="categoryExpenseContainer">
+            <div class="categoryExpenseText">
+                <h3>Future Expense Forecast</h3>
+            </div>
+            <div class="categoryExpenseChart">
+                <canvas id="mixed-chart" width="600" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="categoryMainContainer">
+        <div class="categoryText">
+            <h3>Categories with Highest Expense</h3>
+        </div>
+        <div class="categoryContainer">
+            {% for key, value in data['top_categories'].items() %}
+              <div class="spendingCard">
+                <h4>{{ key }}</h4>
+                <h2>$ {{ value }}</h2>
+              </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Expense Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <!-- <link href="//code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="{{ url_for('static', filename='js/add_expenses.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body>
+    <div id="nav-placeholder">
+    </div>
+    <script>
+        $.get("navigation.html", function (data) {
+            $("#nav-placeholder").replaceWith(data);
+        });
+    </script>
+    <div class="addExpensesMainContainer">
+        <div class="calendarContainer">
+            <div class="addExpensesTitle">Expense Calendar</div>
+            <div class="datepicker"></div>
+        </div>
+
+        <div class="expensesContainer">
+            <div class="expenseTableContainer">
+                <div class="addExpensesTitle">Expense Summary</div>
+                <table id="expTable" class="expenseTable" cellspacing="18" cellpadding="18">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+                <div class="expenseBtn">
+                    <button class="button" onclick="addExpenseShow()">Add Expense</button>
+                </div>
+
+            </div>
+            <div class="incomeTableContainer">
+                <div class="addExpensesTitle">Income Summary</div>
+                <table id="incTable" class="incomeTable" cellspacing="18" cellpadding="18">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Total Income</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+                <div class="incomeBtn">
+                    <button class="button" onclick="addIncomeShow()">Add Income</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="popupContainer">
+        <div id="popup">
+            <div class="addExpenseForm">
+                <div class="popupTitleContainer">
+                    <h2 id="popupTitle"></h2>
+                    <i class="fa fa-window-close" aria-hidden="true" onclick="popupClose()"></i>
+                </div>
+                <hr>
+                <div class="fieldsContainer">
+                    <div class="addExpenseFields">
+                        <span>Date</span>
+                        <span id="expensePopupDate"></span>
+                    </div>
+                    <div class="addExpenseFields">
+                        <span>Category</span>
+                        <span>
+                            <select name="categoryName">
+                                <option value="food">Food</option>
+                                <option value="groceries">Groceries</option>
+                                <option value="misc">Misc</option>
+                                <option value="rent">Rent</option>
+                                <option value="shopping">Shopping</option>
+                                <option value="transport">Transportation</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="addExpenseFields">
+                        <span>Month</span>
+                        <span id="incomeMonthLabel"></span>
+                    </div>
+                    <div class="addExpenseFields">
+                        <span>Amount</span>
+                        <input type="number" id="expenseAmount" name="expenseAmount" min="1">
+                    </div>
+                    <div class="expenseSubmitContainer">
+                        <button class="expenseSubmit" onclick="addExpense()">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
