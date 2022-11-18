@@ -16,7 +16,7 @@
     <div id="nav-placeholder">
     </div>
     <script>
-        $.get("navigation.html", function (data) {
+        $.get("{{ url_for('navigation') }}", function (data) {
             $("#nav-placeholder").replaceWith(data);
         });
     </script>
@@ -84,12 +84,9 @@
                         <span>Category</span>
                         <span>
                             <select name="categoryName">
-                                <option value="food">Food</option>
-                                <option value="groceries">Groceries</option>
-                                <option value="misc">Misc</option>
-                                <option value="rent">Rent</option>
-                                <option value="shopping">Shopping</option>
-                                <option value="transport">Transportation</option>
+                                {% for category_value in data['category_list'] %}
+                                    <option value="{{ category_value }}">{{ category_value }}</option>
+                                {% endfor %}
                             </select>
                         </span>
                     </div>

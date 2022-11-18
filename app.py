@@ -1,9 +1,14 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask import render_template
 
-from utilities import Analysis
+from utilities import Analysis, ManageExpense
 
 app = Flask(__name__)
+
+
+@app.route("/navigation")
+def navigation():
+    return render_template("navigation.html")
 
 
 @app.route("/")
@@ -47,7 +52,32 @@ def analysis():
 
 @app.route("/add_expenses/")
 def add_expenses():
-    return render_template("add_expenses.html")
+    expense_obj = ManageExpense()
+    expense_data = {
+        "category_list": expense_obj.get_distinct_categories()
+    }
+    return render_template("add_expenses.html", data=expense_data)
+
+
+@app.route("/get_monthly_expenses/<int:month>/<int:year>/")
+def get_monthly_expenses(month, year):
+    expense_obj = ManageExpense()
+    monthly_expenses = expense_obj.get_monthly_expenses(month=month, year=year)
+    return monthly_expenses
+
+
+@app.route("/get_selected_day_expenses/<int:month>/<int:day>/<int:year>/")
+def get_selected_day_expenses(day, month, year):
+    expense_obj = ManageExpense()
+    selected_day_expenses = expense_obj.get_selected_day_expenses(month=month, day=day, year=year)
+    return selected_day_expenses
+
+
+@app.route("/get_monthly_income/<int:month>/<int:year>/")
+def get_monthly_income(month, year):
+    expense_obj = ManageExpense()
+    monthly_income = expense_obj.get_monthly_income(month=month, year=year)
+    return monthly_income
 
 
 if __name__ == '__main__':

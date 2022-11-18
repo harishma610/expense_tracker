@@ -11,8 +11,7 @@ $(document).ready(function () {
                 disableExpenseButton();
                 summaryInfo(year, month);
                 refreshExpenseTable();
-                var currMonth = month;
-                incomeExpense(currMonth);
+                incomeExpense(month, year);
             },
             onSelect: onDateSelect
         });
@@ -33,17 +32,33 @@ $(document).ready(function () {
         $('.expenseBtn button').removeClass('disabledBtn');
     }
 
+    function httpGet(url) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", url, false );
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+    }
+
     function summaryInfo(year, month) {
-        console.log('addCustomInformation called')
         setTimeout(function () {
             self.dayrates = {};
             const d = new Date();
             currMonth = d.getMonth();
             currYear = d.getFullYear();
 
-            console.log(year, currYear, month - 1, currMonth);
+            if (month === undefined || month === null) {
+                cmonth = currMonth + 1
+                cyear = currYear
+            }
+            else {
+                cmonth = month
+                cyear = year
+            }
+
+            const url = "http://localhost:8000/get_monthly_expenses/" + cmonth + "/" + cyear + "/"
+
             if (isNaN(month) || month - 1 <= currMonth && year <= currYear) {
-                self.dayrates = { 1: '590', 15: '10', 22: '30' };
+                self.dayrates = JSON.parse(httpGet(url));
             }
 
             $('.ui-datepicker-calendar td > ').each(function (idx) {
@@ -70,20 +85,22 @@ $(document).ready(function () {
         cell.innerHTML = "Select a date to add/view expenses"
     }
 
-    function incomeExpense(currMonth) {
+    function incomeExpense(month, year) {
         var monthname = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-        if (currMonth == null) {
+        if (month == null) {
             const d = new Date();
-            currMonth = d.getMonth();
-            self.selectedMonth = monthname[currMonth];
+            month = d.getMonth() + 1;
+            year = d.getFullYear();
+            self.selectedMonth = monthname[month - 1];
         }
         else {
-            self.selectedMonth = monthname[currMonth - 1];
+            self.selectedMonth = monthname[month - 1];
         }
 
-        self.monthIncome = { October: '1800' };
-        var incomeExists = self.selectedMonth in self.monthIncome
-        console.log('income exists', incomeExists)
+        const url = "http://localhost:8000/get_monthly_income/" + month + "/" + year + "/"
+        self.monthlyIncome = JSON.parse(httpGet(url));
+
+        var incomeExists = self.selectedMonth in self.monthlyIncome
 
         $("#incTable tbody > tr").remove();
         var incomeTable = document.getElementById('incTable')
@@ -94,7 +111,7 @@ $(document).ready(function () {
             var cell = row.insertCell()
             cell.innerHTML = self.selectedMonth
             var cell1 = row.insertCell()
-            cell1.innerHTML = self.monthIncome[self.selectedMonth]
+            cell1.innerHTML = self.monthlyIncome[self.selectedMonth]
         }
         else {
             var row = incomeTableBody.insertRow()
@@ -102,16 +119,15 @@ $(document).ready(function () {
             $(cell).attr("colspan", 2);
             cell.innerHTML = "No Income to Display on the current month"
         }
-        console.log('selected month value', self.selectedMonth)
     }
 
     function onDateSelect() {
         self.selectedDate = $(this).val();
         enableExpenseButton();
         var selectedDay = $(this).datepicker('getDate').getDate();
-        var selectedMonth = $(this).datepicker('getDate').getMonth();
+        var selectedMonth = $(this).datepicker('getDate').getMonth() + 1;
         var selectedYear = $(this).datepicker('getDate').getFullYear();
-        summaryInfo(selectedYear, selectedMonth + 1)
+        summaryInfo(selectedYear, selectedMonth)
 
         var exists = selectedDay in self.dayrates
 
@@ -121,16 +137,17 @@ $(document).ready(function () {
 
 
         if (exists) {
-            var expense_array = { 1: { "Food": 20, "Groceries": 70, "Rent": 500 }, 15: { "Transportation": 10 }, 22: { "Shopping": 30 } };
+            const url = "http://localhost:8000/get_selected_day_expenses/" + selectedMonth + "/" + selectedDay + "/" + selectedYear + "/"
+            var expense_array = JSON.parse(httpGet(url));
 
-            for (var i = 0; i < Object.keys(expense_array[selectedDay]).length; i++) {
+            for (var i = 0; i < Object.keys(expense_array).length; i++) {
                 var row = expenseTableBody.insertRow()
                 var cell = row.insertCell()
                 cell.innerHTML = self.selectedDate
                 var cell1 = row.insertCell()
-                cell1.innerHTML = Object.keys(expense_array[selectedDay])[i]
+                cell1.innerHTML = Object.keys(expense_array)[i]
                 var cell2 = row.insertCell()
-                cell2.innerHTML = Object.values(expense_array[selectedDay])[i]
+                cell2.innerHTML = Object.values(expense_array)[i]
             }
         }
         else {
