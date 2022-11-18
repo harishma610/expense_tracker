@@ -65,7 +65,8 @@ class ManageExpense:
 
     def get_selected_day_expenses(self, month, day, year):
         selected_day_expenses = self.db_obj.execute_statement(
-            f'''select category, sum(amount) from expenses where expense_date = '{str(month)}/{str(day)}/{str(year)}' 
+            f'''select category, round(SUM(amount)::decimal, 2) 
+            from expenses where expense_date = '{str(month)}/{str(day)}/{str(year)}' 
             group by 1'''
         )
         selected_day_expenses = {day_expense[0]: day_expense[1] for day_expense in selected_day_expenses}
@@ -73,7 +74,8 @@ class ManageExpense:
 
     def get_monthly_income(self, month, year):
         monthly_income = self.db_obj.execute_statement(
-            f'''select trim(trailing from to_char(income_date, 'Month')) as month, round(SUM(amount)::decimal, 1) as amount 
+            f'''select trim(trailing from to_char(income_date, 'Month')) as month, 
+            round(SUM(amount)::decimal, 2) as amount 
             from income i where extract(month from income_date) = {month} and extract(year from income_date) = {year} 
             group by 1;'''
         )
