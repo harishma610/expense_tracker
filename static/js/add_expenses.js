@@ -163,23 +163,81 @@ $(document).ready(function () {
 
 function addExpenseShow() {
     $('#popupContainer').css("display", "block");
+    $('#expenseAmount').val('');
     $('#expensePopupDate').html(self.selectedDate);
     $('.fieldsContainer div:lt(2)').css("display", "block");
     $('.fieldsContainer div:eq(2)').css("display", "none");
+    $('#expenseSubmitBtn').css("display", "flex");
+    $('#incomeSubmitBtn').css("display", "none");
     $("#popupTitle").html("Add Expense");
 }
 
 function addIncomeShow() {
     $('#popupContainer').css("display", "block");
+    $('#expenseAmount').val('');
     $('.fieldsContainer div:eq(2)').css("display", "block");
     $('.fieldsContainer div:lt(2)').css("display", "none");
+    $('#incomeSubmitBtn').css("display", "flex");
+    $('#expenseSubmitBtn').css("display", "none");
     $("#popupTitle").html("Add Income");
     $("#incomeMonthLabel").html(self.selectedMonth);
 }
 
 function addExpense() {
-    // AddExpenseService integration in future
-    $('#popupContainer').css("display", "none");
+    var expenseDate = $("#expensePopupDate").text()
+    var expenseCategory = $('#expenseCategoryName').find(":selected").val();
+    var expenseAmount = $("#expenseAmount").val()
+    if (expenseAmount) {
+        $.ajax({
+            url: 'http://localhost:8000/add_an_expense/',
+            type: 'POST',
+            data: {
+                date: expenseDate,
+                category: expenseCategory,
+                expense: expenseAmount
+            },
+            success: function (response) {
+                alert("Expense added successfully")
+                location.reload(true)
+            },
+            error: function (response) {
+                alert("Not OK...")
+            }
+        });
+        $('#popupContainer').css("display", "none");
+    }
+    else {
+        alert("Enter a valid amount")
+    }
+}
+
+function addIncome() {
+    var incomeMonth = $("#incomeMonthLabel").text()
+    var incomeAmount = $("#expenseAmount").val()
+    var incomeYear = $(".ui-datepicker-year").text()
+    if (incomeAmount) {
+        $.ajax({
+            url: 'http://localhost:8000/add_income/',
+            type: 'POST',
+            data: {
+                month: incomeMonth,
+                year: incomeYear,
+                income: incomeAmount
+            },
+            success: function (response) {
+                alert("Income added successfully")
+                location.reload(true)
+            },
+            error: function (response) {
+                alert("Not OK...")
+            }
+        });
+        $('#popupContainer').css("display", "none");
+    }
+    else {
+        alert("Enter a valid amount")
+    }
+
 }
 
 function popupClose() {

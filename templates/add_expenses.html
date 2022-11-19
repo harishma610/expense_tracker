@@ -83,7 +83,7 @@
                     <div class="addExpenseFields">
                         <span>Category</span>
                         <span>
-                            <select name="categoryName">
+                            <select id="expenseCategoryName" name="categoryName">
                                 {% for category_value in data['category_list'] %}
                                     <option value="{{ category_value }}">{{ category_value }}</option>
                                 {% endfor %}
@@ -98,8 +98,11 @@
                         <span>Amount</span>
                         <input type="number" id="expenseAmount" name="expenseAmount" min="1">
                     </div>
-                    <div class="expenseSubmitContainer">
+                    <div id="expenseSubmitBtn" class="expenseSubmitContainer">
                         <button class="expenseSubmit" onclick="addExpense()">Add</button>
+                    </div>
+                    <div id="incomeSubmitBtn" class="expenseSubmitContainer">
+                        <button class="expenseSubmit" onclick="addIncome()">Add</button>
                     </div>
                 </div>
             </div>

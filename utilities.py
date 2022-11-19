@@ -82,5 +82,15 @@ class ManageExpense:
         monthly_income = {income[0]: income[1] for income in monthly_income}
         return monthly_income
 
+    def add_income(self, month, year, income):
+        self.db_obj.execute_statement(f'''insert into income(id, income_date, amount) 
+        values((SELECT MAX(id) from income)+1, '{str(month)}/{str(1)}/{str(year)}', {income})''', linear=True)
+        self.db_obj.conn.commit()
+
+    def add_an_expense(self, date, category, expense):
+        self.db_obj.execute_statement(f'''insert into expenses(id, expense_date, category, amount) 
+        values((SELECT MAX(id) from expenses)+1, '{str(date)}', '{category}', {expense})''', linear=True)
+        self.db_obj.conn.commit()
+
     def __exit__(self):
         self.db_obj.close_connections()

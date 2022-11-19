@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask import render_template
 
 from utilities import Analysis, ManageExpense
@@ -78,6 +78,26 @@ def get_monthly_income(month, year):
     expense_obj = ManageExpense()
     monthly_income = expense_obj.get_monthly_income(month=month, year=year)
     return monthly_income
+
+
+@app.route('/add_income/', methods=['POST'])
+def add_income():
+    month = request.form['month']
+    year = request.form['year']
+    income = request.form['income']
+    expense_object = ManageExpense()
+    expense_object.add_income(month=month, year=year, income=income)
+    return "Income added", 200
+
+
+@app.route('/add_an_expense/', methods=['POST'])
+def add_an_expense():
+    date = request.form['date']
+    category = request.form['category']
+    expense = request.form['expense']
+    expense_object = ManageExpense()
+    expense_object.add_an_expense(date=date, category=category, expense=expense)
+    return "Expense added", 200
 
 
 if __name__ == '__main__':
