@@ -35,7 +35,7 @@ class Analysis:
         expense_by_category = self.db_obj.execute_statement('''SELECT category, round(SUM(amount)::decimal, 2) as amount 
             FROM expenses 
             where date_trunc('month', expense_date) = date_trunc('month', current_date) 
-            group by category order by 2 desc limit 5;''')
+            group by category order by 2 desc;''')
         return expense_by_category
 
     def get_actual_expenses(self):
