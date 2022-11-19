@@ -38,6 +38,16 @@ class Analysis:
             group by category order by 2 desc limit 5;''')
         return expense_by_category
 
+    def get_actual_expenses(self):
+        actual_expenses = self.db_obj.execute_statement('''select trim(trailing from 
+        to_char(expense_date, 'Mon')) as month, extract(year from expense_date), 
+        extract(month from expense_date),
+        round(SUM(amount)::decimal, 2) as amount 
+        from expenses 
+        group by 1,2,3 
+        order by 3''')
+        return actual_expenses
+
     def __exit__(self):
         self.db_obj.close_connections()
 
