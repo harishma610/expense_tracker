@@ -70,12 +70,12 @@
             new Chart(document.getElementById("mixed-chart"), {
                 type: 'line',
                 data: {
-                    labels: ["Jan-22", "Feb-22", "Mar-22", "Apr-22", "May-22", "Jun-22", "Jul-22", "Aug-22", "Sep-22", "Oct-22", "Nov-22", "Dec-22", "Jan-23", "Feb-23", "Mar-23"],
+                    labels: {{ actual_labels|safe }},
                     datasets: [{
                         label: "Actual",
                         type: "line",
                         borderColor: "#8e5ea2",
-                        data: [800, 700, 900, 600, 1200, 1500, 650, 500, 650, 630],
+                        data: {{ actual_values|safe }},
                         fill: false,
                         tension: 0.1
                     }, {

@@ -36,6 +36,15 @@ def analysis():
     top_categories = {
         category[0]: float(category[1]) for category in expense_by_category[:5]
     }
+    actual = analysis_obj.get_actual_expenses()
+    all_actual = {
+        f"{each_actual[0]}+{str(each_actual[1])}": float(each_actual[3]) for each_actual in actual
+    }
+
+    # month_labels=list(all_actual.keys())
+    # months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun']
+    # last_month_index=months.index(month_labels[-1][:3])
+    # month_labels += months[last_month_index+1:last_month_index+7]
     analysis_data = {
         "today": analysis_obj.get_current_day_expense(),
         "weekly": analysis_obj.get_current_week_expense(),
@@ -46,7 +55,9 @@ def analysis():
         "analysis.html",
         data=analysis_data,
         labels=list(all_categories.keys()),
-        values=list(all_categories.values())
+        values=list(all_categories.values()),
+        actual_labels=list(all_actual.keys()),
+        actual_values=list(all_actual.values())
     )
 
 
