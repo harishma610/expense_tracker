@@ -40,12 +40,12 @@ class Analysis:
 
     def get_actual_expenses(self):
         actual_expenses = self.db_obj.execute_statement('''select trim(trailing from 
-        to_char(expense_date, 'Mon')) as month, extract(year from expense_date), 
-        extract(month from expense_date),
+        to_char(expense_date, 'Mon')) as month, extract(year from expense_date) as year, 
+        extract(month from expense_date) as month_num,
         round(SUM(amount)::decimal, 2) as amount 
         from expenses 
         group by 1,2,3 
-        order by 3''')
+        order by 2, 3''')
         return actual_expenses
 
     def __exit__(self):

@@ -6,7 +6,8 @@ db_obj = DBConnection()
 # Create all the required tables
 db_obj.execute_statement('''CREATE TABLE IF NOT EXISTS forecasts (
         id	serial PRIMARY KEY,
-        month_year TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT now(),
+        forecast_date DATE NOT NULL,
         forecast real NOT NULL);''', linear=True)
 db_obj.execute_statement('''CREATE TABLE IF NOT EXISTS expenses (
         id	serial PRIMARY KEY,
