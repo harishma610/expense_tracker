@@ -70,7 +70,7 @@
             new Chart(document.getElementById("mixed-chart"), {
                 type: 'line',
                 data: {
-                    labels: {{ actual_labels|safe }},
+                    labels: {{ forecast_labels|safe }},
                     datasets: [{
                         label: "Actual",
                         type: "line",
@@ -82,7 +82,7 @@
                         label: "Forecast",
                         type: "line",
                         borderColor: "#3e95cd",
-                        data: [500, 600, 1100, 700, 800, 1400, 850, 400, 560, 530, 700, 730, 800, 650, 500],
+                        data: {{ forecast_values|safe }},
                         fill: false,
                         tension: 0.1
                     },
