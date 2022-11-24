@@ -39,15 +39,16 @@ def analysis():
     }
     actual = analysis_obj.get_actual_expenses()
     all_actual = {
-        f"{each_actual[0]}+{str(each_actual[1])}": float(each_actual[3]) for each_actual in actual
+        f"{each_actual[0] + ' ' + str(each_actual[1])}": float(each_actual[3]) for each_actual in actual
+    }
+    forecast = analysis_obj.get_forecast_expenses()
+    all_forecast = {
+        f"{each_forecast[0] + ' ' + str(each_forecast[1])}": float(each_forecast[3]) for each_forecast in forecast
     }
 
-    # month_labels=list(all_actual.keys())
-    # months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun']
-    # last_month_index=months.index(month_labels[-1][:3])
-    # month_labels += months[last_month_index+1:last_month_index+7]
     today = datetime.datetime.now()
     current_month = today.strftime("%B")
+
     analysis_data = {
         "today": analysis_obj.get_current_day_expense(),
         "weekly": analysis_obj.get_current_week_expense(),
@@ -61,6 +62,8 @@ def analysis():
         values=list(all_categories.values()),
         actual_labels=list(all_actual.keys()),
         actual_values=list(all_actual.values()),
+        forecast_labels=list(all_forecast.keys()),
+        forecast_values=list(all_forecast.values()),
         current_month=current_month
     )
 

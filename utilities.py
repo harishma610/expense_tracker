@@ -38,13 +38,28 @@ class Analysis:
 
     def get_actual_expenses(self):
         actual_expenses = self.db_obj.execute_statement('''select trim(trailing from 
-        to_char(expense_date, 'Mon')) as month, extract(year from expense_date) as year, 
+        to_char(expense_date, 'Mon')) as month, extract(year from expense_date) as y, 
         extract(month from expense_date) as month_num,
         round(SUM(amount)::decimal, 2) as amount 
         from expenses 
+        where date_trunc('month', expense_date) <= date_trunc('month', current_date) and 
+        date_trunc('year', expense_date) = date_trunc('year', current_date)
         group by 1,2,3 
         order by 2, 3''')
         return actual_expenses
+
+    def get_forecast_expenses(self):
+        forecast_expenses = self.db_obj.execute_statement('''select trim(trailing from 
+        to_char(forecast_date, 'Mon')) as month, extract(year from forecast_date) as year, 
+        extract(month from forecast_date) as month_num,
+        round(SUM(forecast)::decimal, 2) as forecast 
+        from forecasts 
+        where id in (select max(id) from forecasts f2 group by forecast_date) and
+        date_trunc('year', forecast_date) >= date_trunc('year', current_date) and
+        forecast_date <= Current_date + 210
+        group by 1,2,3
+        order by 2,3''')
+        return forecast_expenses
 
     def __exit__(self):
         self.db_obj.close_connections()
