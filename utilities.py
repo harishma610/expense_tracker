@@ -1,5 +1,3 @@
-import datetime
-
 from db_conn import DBConnection
 
 

@@ -116,14 +116,14 @@
             <h2 id="weekly">$ {{ data['weekly'] }}</h2>
         </div>
         <div class="spendingCard">
-            <h4>October</h4>
+            <h4>{{ current_month }}</h4>
             <h2 id="monthly">$ {{ data['monthly'] }}</h2>
         </div>
     </div>
     <div class="analysisContainer">
         <div class="categoryExpenseContainer">
             <div class="categoryExpenseText">
-                <h3>October Expense Chart</h3>
+                <h3>{{ current_month }} Expense Chart</h3>
             </div>
             <div class="categoryExpenseChart">
                 <!-- <div style = "width:200px;height:200px"> -->

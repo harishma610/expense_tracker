@@ -1,5 +1,6 @@
-from flask import Flask, jsonify, request
+from flask import Flask, request
 from flask import render_template
+import datetime
 
 from utilities import Analysis, ManageExpense
 
@@ -45,6 +46,8 @@ def analysis():
     # months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun']
     # last_month_index=months.index(month_labels[-1][:3])
     # month_labels += months[last_month_index+1:last_month_index+7]
+    today = datetime.datetime.now()
+    current_month = today.strftime("%B")
     analysis_data = {
         "today": analysis_obj.get_current_day_expense(),
         "weekly": analysis_obj.get_current_week_expense(),
@@ -57,7 +60,8 @@ def analysis():
         labels=list(all_categories.keys()),
         values=list(all_categories.values()),
         actual_labels=list(all_actual.keys()),
-        actual_values=list(all_actual.values())
+        actual_values=list(all_actual.values()),
+        current_month=current_month
     )
 
 
